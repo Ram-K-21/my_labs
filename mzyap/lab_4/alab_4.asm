@@ -9,7 +9,7 @@ section .bss
     res resb 4
     va resb 2
     vb resb 2
-    mas resb 10
+    mas resb 20
     len resb 1
 
 section .text
@@ -27,23 +27,19 @@ shrt_int:
 cikl: 
     cmp rcx, rbx
     je end
-    movsx rax, word [mas + ebx]
-    cmp rax, rsi
+    movsx rdx, word [mas + rbx]
+    add rbx, 2
+    cmp rdx, rsi
     jge more
-    jl no
+    jmp cikl
 more:
-    cmp rax, rdi
+    cmp rdx, rdi
     jle less
-    jg no
+    jmp cikl
 less:
-    mov rax, [res]
-    add rax, [mas + ebx]
-    mov [res], rax
-    add rbx, 2
-    loop cikl
-no:
-    add rbx, 2
-    loop cikl
+    add rax, rdx
+    jmp cikl
 end:
-    pop rax
+    mov [res], rax
+    pop rbx
     ret

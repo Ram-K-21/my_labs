@@ -7,26 +7,17 @@ extern int8_t len;
 extern int16_t va, vb, mas[10];
 extern int32_t res;
 
-void clean_stream()
-{
-    while (fgetc(stdin) != '\n')
-        ;
-}
-
 int main()
 {
     len = 10;
     printf("a: ");
-    scanf("%hu", &va);
+    scanf("%hd", &va);
     printf("b: ");
-    scanf("%hu", &vb);
-    printf("mas with size 10: ");
-    clean_stream();
-    char mas_[10];
-    gets(mas_);
+    scanf("%hd", &vb);
+    printf("mas size 10: ");
     for (int i = 0; i < 10; i++)
     {
-        mas[i] = mas_[i] - '0';
+        scanf("%hd", &mas[i]);
     }
     // short mas[] = {12, 2, 7, 3, 2, 0, 21, -9, 0, 8};
     int sum = 0;
@@ -39,7 +30,7 @@ int main()
     }
 
     shrt_int();
-    printf("%hu <= mas[i] <= %hu\n", va, vb);
-    printf("---shrt_int---\ncresult: %hu\n\n", sum);
-    printf("result: %hu\n\n", res);
+    printf("%hd <= mas[i] <= %hd\n\n", va, vb);
+    printf("---shrt_int---\ncresult: %hd\n\n", sum);
+    printf("result: %hd\n\n", res);
 }
